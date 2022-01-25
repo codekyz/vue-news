@@ -1,7 +1,13 @@
 <template>
-  <div v-for="item in fetchedAsk">
-      {{ item.title }}
-  </div>
+  <p v-for="item in fetchedAsk">
+      <router-link :to="`/item/${item.id}`">
+        {{ item.title }}
+      </router-link>
+      <small>
+        {{ item.time_ago }}, 
+        {{ item.user }}
+      </small>
+  </p>
 </template>
 
 <script>
@@ -12,15 +18,8 @@ export default {
     ...mapGetters([
       'fetchedAsk'
     ])
-
-    // ...mapState({
-    //   ask: state => state.ask
-    // })
-
-    // ask() {
-    //   return this.$store.state.ask;
-    // }
   },
+  
   created() {
     this.$store.dispatch('FETCH_ASK');
   },
