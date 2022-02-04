@@ -13,36 +13,31 @@
           {{ fetchedItem.time_ago }}
         </div>
       </div>
-
     </section>
 
     <section>
       <h2>{{ fetchedItem.title }}</h2>
-      <div v-html="fetchedItem.content" />
     </section>
 
     <section>
-
+      <div v-html="fetchedItem.content" />
     </section>
-
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters([
-      'fetchedItem'
-    ])
+    ...mapGetters(["fetchedItem"]),
   },
 
-    created() {
-      const itemId = this.$route.params.itemId;
-      this.$store.dispatch('FETCH_ITEM', itemId);
-    }
-}
+  created() {
+    const itemId = this.$route.params.itemId;
+    this.$store.dispatch("FETCH_ITEM", itemId);
+  },
+};
 </script>
 
 <style scoped>
